@@ -1,7 +1,0 @@
-{
-    "env": {
-      "MONGO_USER": "new-user", 
-      "MONGO_PASS": "Ql5rUJuO8IFyB0CO", 
-      "MONGO_DB": "Cluster0" 
-    }
-  }
