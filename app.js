@@ -30,7 +30,7 @@ app.use((error, req, res, next) => {
 });
 
 // connect to db
-const MONGOOSE_URI = `mongodb+srv://new-user:Ql5rUJuO8IFyB0CO@cluster0.b6hlr.mongodb.net/Cluster0?retryWrites=true&w=majority`;
+const MONGOOSE_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.b6hlr.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`;
 mongoose
   .connect(MONGOOSE_URI)
   .then((result) => {
