@@ -1,0 +1,7 @@
+{
+    "env": {
+      "MONGO_USER": "U11", 
+      "MONGO_PASS": "ZrC8smoJmnFrBppk", 
+      "MONGO_DB": "Cluster0" 
+    }
+  }
