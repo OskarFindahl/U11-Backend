@@ -1,7 +1,8 @@
 const productModel = require("../models/productModel");
+const loadedUser = require("../controllers/authController");
 
 exports.postProduct = async (req, res, next) => {
-  const { name, description, price } = req.body;
+  const { name, description, price, gender, img } = req.body;
   try {
     const exsitProduct = await productModel.findOne({ name: name });
     if (exsitProduct) {
@@ -19,6 +20,8 @@ exports.postProduct = async (req, res, next) => {
       name: name,
       description: description,
       price: price,
+      gender: gender,
+      img: img,
     });
     const result = await product.save();
     res.status(200).json({
@@ -37,6 +40,21 @@ exports.getAllProducts = async (req, res, next) => {
     const result = await productModel.find();
     res.status(200).json({
       result,
+    });
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
+exports.deleteProduct = async (req, res, next) => {
+  const { id } = req.body;
+  try {
+    const result = await productModel.findOneAndDelete({ _id: id });
+    res.status(200).json({
+      message: "Product deleted",
     });
   } catch (err) {
     if (!err.statusCode) {

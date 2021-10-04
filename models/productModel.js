@@ -16,6 +16,14 @@ const ProductSchema = new Schema(
       type: Number,
       required: true,
     },
+    gender: {
+      type: String,
+      required: true,
+    },
+    img: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );
