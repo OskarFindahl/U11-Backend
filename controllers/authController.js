@@ -22,6 +22,7 @@ exports.postSignin = async (req, res, next) => {
       fullname: fullname,
       email: email,
       password: hashedPassword,
+      admin: false,
     });
     const result = await user.save();
     res.status(200).json({
@@ -57,9 +58,13 @@ exports.postLogin = async (req, res, next) => {
       error.statusCode = 401;
       throw error;
     }
-    const token = jwt.sign({ email: loadedUser.email }, "expressnuxtsecret", {
-      expiresIn: "20m", // it will expire token after 20 minutes and if the user then refresh the page will log out
-    });
+    const token = jwt.sign(
+      { email: loadedUser.email, admin: loadedUser.admin },
+      "expressnuxtsecret",
+      {
+        expiresIn: "20m", // it will expire token after 20 minutes and if the user then refresh the page will log out
+      }
+    );
     res.status(200).json({ token: token });
   } catch (err) {
     if (!err.statusCode) {
