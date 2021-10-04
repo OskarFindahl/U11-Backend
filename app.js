@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 
 // routes
 const authRouter = require("./routes/authRouter");
+const productRouter = require("./routes/productRouter");
 
 const app = express();
 
@@ -20,6 +21,8 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/auth/", authRouter);
+
+app.use("/api/product", productRouter);
 
 app.use((error, req, res, next) => {
   console.log(error);
