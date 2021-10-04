@@ -8,10 +8,10 @@ exports.postSignin = async (req, res, next) => {
     const exsitUser = await userModel.findOne({ email: email });
     if (exsitUser) {
       const error = new Error(
-        "Eamil already exist, please pick another email!"
+        "Email already exist, please pick another email!"
       );
       res.status(409).json({
-        error: "Eamil already exist, please pick another email! ",
+        error: "Email already exist, please pick another email! ",
       });
       error.statusCode = 409;
       throw error;
