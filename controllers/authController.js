@@ -81,6 +81,21 @@ exports.getUser = (req, res, next) => {
       id: loadedUser._id,
       fullname: loadedUser.fullname,
       email: loadedUser.email,
+      admin: loadedUser.admin,
     },
   });
+};
+
+exports.getAllUsers = async (req, res, next) => {
+  try {
+    const result = await userModel.find();
+    res.status(200).json({
+      result,
+    });
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
 };
