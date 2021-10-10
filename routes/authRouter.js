@@ -8,5 +8,6 @@ router.post("/signin", authController.postSignin);
 router.post("/login", authController.postLogin);
 router.get("/user", isAuth, authController.getUser);
 router.get("/users/all", isAdmin, authController.getAllUsers);
+router.put("/user/edit", isAdmin, authController.editUser);
 
 module.exports = router;
