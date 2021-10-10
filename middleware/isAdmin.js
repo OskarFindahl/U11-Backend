@@ -23,11 +23,13 @@ module.exports = (req, res, next) => {
     throw error;
   }
 
+  console.log(decodedToken.admin);
   if (!decodedToken.admin) {
     const error = new Error("Not admin");
-    error.statusCode = 401;
+    error.statusCode = 403;
     throw error;
   }
+
   req.userId = decodedToken.userId;
 
   next();
